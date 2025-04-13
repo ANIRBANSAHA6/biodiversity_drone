@@ -1,0 +1,7 @@
+0: Grenade
+1: Gun
+2: Knife
+3: Pistol
+4: handgun
+5: rifle
+7: person

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Poacher Detection</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff3c3c;
+            margin: 10px 0;
+            font-size: 1.8em;
+        }
+
+        .stream {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-height: 80vh;
+        }
+
+        .stream img {
+            max-height: 70vh;
+            max-width: 100%;
+            border: 4px solid #ff3c3c;
+            border-radius: 10px;
+            object-fit: contain;
+        }
+
+        .detection-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 60, 60, 0.1);
+            border: 1px solid #ff3c3c;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .detection-info h3 {
+            margin: 0 0 10px 0;
+            color: #ff3c3c;
+        }
+
+        .detection-info p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .drone-location {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .back-button {
+            margin: 20px 0;
+        }
+
+        .back-button a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #222;
+            padding: 10px 20px;
+            border: 2px solid #ff3c3c;
+            border-radius: 5px;
+            transition: 0.3s;
+            font-size: 1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button a:hover {
+            background-color: #ff3c3c;
+            color: #000;
+        }
+
+
+
+        .datetime-display {
+            background-color: rgba(255, 60, 60, 0.1);
+            border: 1px solid #ff3c3c;
+            border-radius: 5px;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+    </style>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            const timeStr = now.toLocaleTimeString('en-US');
+            document.getElementById('datetime').textContent = `${dateStr} | ${timeStr}`;
+        }
+        
+        setInterval(updateDateTime, 1000);
+        document.addEventListener('DOMContentLoaded', updateDateTime);
+    </script>
+</head>
+<body>
+    <div id="datetime" class="datetime-display"></div>
+    <h1>🧍‍♂️🔫 Live Poacher Detection</h1>
+    <div class="stream">
+        <img src="http://localhost:5000/video_poacher" alt="Poachers Detection Feed">
+        <div class="detection-info">
+            <h3>Detection Status</h3>
+            <p>Monitoring for suspicious activities...</p>
+
+        </div>
+        <p class="drone-location">🛰 Drone Location: <strong>22.4585419, 88.3997757</strong></p>
+    </div>
+    <div class="back-button">
+        <a href="/index.html">← Back to Dashboard</a>
+    </div>
+</body>
+</html>

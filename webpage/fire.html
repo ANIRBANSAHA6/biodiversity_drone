@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fire Detection</title>
+  <style>
+    .datetime-display {
+      background-color: rgba(211, 47, 47, 0.1);
+      border: 1px solid #d32f2f;
+      border-radius: 10px;
+      padding: 8px 15px;
+      font-size: 2vh;
+      color: #d32f2f;
+      margin: 1vh auto;
+      max-width: 80vw;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #fceabb, #f8b500);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      overflow: hidden;
+      color: #222;
+    }
+
+    header {
+      text-align: center;
+      padding-top: 2vh;
+    }
+
+    h1 {
+      color: #d32f2f;
+      font-size: 3vh;
+      text-shadow: 1px 1px rgba(255, 255, 255, 0.7);
+    }
+
+    p {
+      font-size: 2vh;
+      margin-top: 1vh;
+      max-width: 80vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .stream {
+      width: 90vw;
+      max-width: 800px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      margin-top: 2vh;
+      margin-bottom: 2vh;
+    }
+
+    .stream h2 {
+      color: #2e7d32;
+      font-size: 2.2vh;
+      margin-bottom: 1vh;
+    }
+
+    .stream img {
+      border: 4px solid #4caf50;
+      border-radius: 10px;
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+    }
+
+    .drone-location {
+      margin-top: 2vh;
+      font-size: 2vh;
+      color: #444;
+      font-weight: bold;
+    }
+
+    button {
+      margin-bottom: 3vh;
+      padding: 1.2vh 3vw;
+      font-size: 2vh;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      background-color: #b71c1c;
+      transform: scale(1.05);
+    }
+  </style>
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      const timeStr = now.toLocaleTimeString('en-US');
+      document.getElementById('datetime').textContent = `${dateStr} | ${timeStr}`;
+    }
+    
+    setInterval(updateDateTime, 1000);
+    document.addEventListener('DOMContentLoaded', updateDateTime);
+  </script>
+</head>
+<body>
+  <div id="datetime" class="datetime-display"></div>
+  <header>
+    <h1>🔥 Fire Detection System 🔥</h1>
+    <p>Monitoring forest fire threats in real time using aerial surveillance.</p>
+  </header>
+
+  <div class="stream">
+    <h2>Live Detection Stream</h2>
+    <img src="http://localhost:5000/video_feed" alt="Live Fire Detection Feed">
+    <p class="drone-location">🛰 YOUR DRONE LOCATION LAT, LONG: <strong>22.4585419, 88.3997757</strong></p>
+  </div>
+
+  <button onclick="location.href='index.html'">⬅ Back to Home</button>
+</body>
+</html>
